@@ -19,15 +19,11 @@
 # Python exemple :
 import requests
 
-file = open("tokens.txt", "w")
-file.seek(0)
-file.truncate()
-for tok in tokens:
-  r = req.get(f'https://discord.com/api/v6/users/@me', headers = {'authorization':tok})
-  if r.status_code == 200
+token = "your token"
+r = requests.get(f'https://discord.com/api/v6/users/@me', headers = {'authorization':token})
+if r.status_code == 200:
   print("[VALID]")
-  else:
-  print("[Error]")
-file.close()
-
-#Bad Script :[]
+elif r.status_code == 429:
+  print("Rate limit")
+else:
+  print("invalid")
